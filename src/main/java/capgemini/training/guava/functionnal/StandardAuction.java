@@ -18,7 +18,7 @@ public final class StandardAuction {
 	 * Tri par valeur de l'enchère.
 	 * Si deux enchères sont de même valeur alors celle qui a été la première dans le temps prend la priorité.
 	 */
-	private static final Ordering<Bid> ORDERING = new Ordering<Bid>() {
+	public static final Ordering<Bid> ORDERING = new Ordering<Bid>() {
 			@Override
 			public int compare(Bid left, Bid right) {
 				return left.getValue().compareTo(right.getValue());
