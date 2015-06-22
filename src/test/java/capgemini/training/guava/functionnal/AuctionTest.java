@@ -21,6 +21,42 @@ public class AuctionTest {
 		auction = new Auction("Produit", 45d);
 	}
 	
+	/**
+	 * Vickrey auction
+	 */
+	
+	@Test
+	public void testWinning_VickreyAuction() {
+		auction.getBidStore().bid(new Bid().setOwner("Francois").setValue(35d).setTime(Calendar.getInstance()));
+		auction.getBidStore().bid(new Bid().setOwner("Francois").setValue(60d).setTime(Calendar.getInstance()));
+		auction.getBidStore().bid(new Bid().setOwner("Francois").setValue(80d).setTime(Calendar.getInstance()));
+
+		auction.getBidStore().bid(new Bid().setOwner("Charlotte").setValue(40d).setTime(Calendar.getInstance()));
+		auction.getBidStore().bid(new Bid().setOwner("Charlotte").setValue(45d).setTime(Calendar.getInstance()));
+		auction.getBidStore().bid(new Bid().setOwner("Charlotte").setValue(75d).setTime(Calendar.getInstance()));
+		auction.getBidStore().bid(new Bid().setOwner("Charlotte").setValue(85d).setTime(Calendar.getInstance()));
+		
+		Entry<String, Double> expected = new AbstractMap.SimpleEntry<String, Double>("Charlotte", 80d);
+		
+		assertEquals(expected, auction.winner(VickreyAuction.VALIDATION, VickreyAuction.WINNING_FUNCTION));
+	}
+	
+	@Test(expected=IllegalStateException.class)
+	public void testWinning_VickreyAuctionNoBids() {
+		auction.winner(StandardAuction.VALIDATION, StandardAuction.WINNING_FUNCTION);
+	}
+	
+	@Test(expected=IllegalStateException.class)
+	public void testWinning_VickreyAuctionInvalidBids() {
+		auction.getBidStore().bid(new Bid().setOwner("Francois").setValue(35d).setTime(Calendar.getInstance()));
+		auction.getBidStore().bid(new Bid().setOwner("Charlotte").setValue(50d).setTime(Calendar.getInstance()));
+		auction.winner(VickreyAuction.VALIDATION, VickreyAuction.WINNING_FUNCTION);
+	}
+	
+	/**
+	 * Standard auction
+	 */
+	
 	@Test
 	public void testWinning_StandardAuction() {
 		auction.getBidStore().bid(new Bid().setOwner("Francois").setValue(35d).setTime(Calendar.getInstance()));

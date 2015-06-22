@@ -24,7 +24,6 @@ public class IParserTest extends ConfiguredTest {
 	 */
 	@Before
 	public void before() {
-		parser = getInstance(IParser.class, true);
 	}
 	
 	@Test

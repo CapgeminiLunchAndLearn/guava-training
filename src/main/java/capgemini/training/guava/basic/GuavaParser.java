@@ -30,15 +30,7 @@ public class GuavaParser implements IParser {
 
 	@Override
 	public Bid unmarshalBid(String bid) {
-		Preconditions.checkArgument(!Strings.isNullOrEmpty(bid));
-		Iterable<String> values = Splitter.on(',').omitEmptyStrings().trimResults().split(bid);
-		Preconditions.checkArgument(Iterables.size(values) == 3);
-		
-		Bid result = new Bid();
-		result.setOwner(Iterables.get(values, 0));
-		result.setValue(Double.valueOf(Iterables.get(values, 1)));
-		result.setTime(getCalendarFor(Iterables.get(values, 2)));
-		return result;
+		return null;
 	}
 
 	@Override
@@ -49,16 +41,7 @@ public class GuavaParser implements IParser {
 
 	@Override
 	public List<Bid> unmarshalBids(String bids) {
-		Preconditions.checkArgument(!Strings.isNullOrEmpty(bids));
-		
-		return Lists.newArrayList(
-				Iterables.transform(Splitter.on(';').omitEmptyStrings().trimResults().split(bids), new Function<String, Bid>() {
-
-			@Override
-			public Bid apply(String input) {
-				return unmarshalBid(input);
-			}
-		}));
+		return null;
 	}
 
 	@Override

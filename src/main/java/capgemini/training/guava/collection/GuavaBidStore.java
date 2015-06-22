@@ -42,61 +42,33 @@ public class GuavaBidStore implements IBidStore {
 
 	@Override
 	public Iterable<Bid> getBidsWithMinimumPrice(final double reservedPrice) {
-		return Iterables.filter(bids, new Predicate<Bid>() {
-
-			@Override
-			public boolean apply(Bid arg0) {
-				return arg0.getValue().compareTo(reservedPrice) >= 0;
-			}
-		});
+		
+		return null;
 	}
 	
 	@Override
 	public Set<Bid> deleteAuctionner(final String auctionner) {
-		Iterables.removeIf(bids, new Predicate<Bid>() {
-
-			@Override
-			public boolean apply(Bid input) {
-				return input.getOwner().equals(auctionner);
-			}
-		});
-		return getAllBids();
+		return null;
 	}
 
 	@Override
 	public Set<Double> getAllBidsValues() {
-		return Sets.newHashSet(Iterables.transform(bids, new Function<Bid, Double>() {
-
-			@Override
-			public Double apply(Bid arg0) {
-				return arg0.getValue();
-			}
-		}));
+		return null;
 	}
 	
 	@Override
 	public Multiset<String> getAllAuctionnerAndCounter() {
-		return HashMultiset.create(Iterables.transform(bids, new Function<Bid, String>() {
-
-			@Override
-			public String apply(Bid arg0) {
-				return arg0.getOwner();
-			}
-		}));
+		return null;
 	}
 	
 	@Override
 	public Multimap<String, Bid> getAllBidsByAuctionners() {
-		Multimap<String, Bid> result = HashMultimap.create();
-		for (Bid bid : bids) {
-			result.put(bid.getOwner(), bid);
-		}
-		return result;
+		return null;
 	}
 	
 	@Override
 	public Set<Bid> getAllBids() {
-		return ImmutableSet.copyOf(bids);
+		return null;
 	}
 
 }
