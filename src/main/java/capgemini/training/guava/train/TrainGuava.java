@@ -52,7 +52,7 @@ public class TrainGuava {
 	}
 	
 	/**
-	 * @see com.google.common.collect.Iterables#filter(Iterable, Predicate)
+	 * @see com.google.common.collect.Iterables#removeAll(Iterable, java.util.Collection)
 	 */
 	public Iterable<String> filter(List<String> origin, final List<String> forbiddenWords) {
 		return null;
@@ -69,11 +69,13 @@ public class TrainGuava {
 	 * @see com.google.common.collect.Iterables#filter(Iterable, Predicate)
 	 */
 	public <T> Iterable<T> compress(Iterable<T> iterable) {
-		return null;
+		Predicate<T> uniquePredicate = null;
+		return Iterables.filter(iterable, Predicates.and(Predicates.not(Predicates.isNull()), uniquePredicate));
 	}
 
 	/**
 	 * @see com.google.common.collect.Maps#toMap(Iterable, Function)
+	 * @see com.google.common.collect.Iterables#frequency(Iterable, Object)
 	 */
 	public <T> Map<T, Integer> counter(final List<T> source) {
 		return null;

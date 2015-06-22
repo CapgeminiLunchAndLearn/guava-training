@@ -30,7 +30,13 @@ public class GuavaParser implements IParser {
 
 	@Override
 	public Bid unmarshalBid(String bid) {
-		return null;
+		// Check validity of the string in parameter and split it @see com.google.common.base.Splitters
+		List<String> values = null;
+		
+		return new Bid()
+				.setOwner(values.get(0))
+				.setValue(Double.valueOf(values.get(1)))
+				.setTime(getCalendarFor(values.get(2)));
 	}
 
 	@Override
@@ -41,6 +47,7 @@ public class GuavaParser implements IParser {
 
 	@Override
 	public List<Bid> unmarshalBids(String bids) {
+		// Check validity of the string in parameter and for each segment between each ; unmarshal a auction
 		return null;
 	}
 

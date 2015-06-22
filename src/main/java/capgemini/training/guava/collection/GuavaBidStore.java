@@ -42,33 +42,48 @@ public class GuavaBidStore implements IBidStore {
 
 	@Override
 	public Iterable<Bid> getBidsWithMinimumPrice(final double reservedPrice) {
-		
+		// Return a view of bids with only values >= to reserved price in parameter
 		return null;
 	}
 	
 	@Override
 	public Set<Bid> deleteAuctionner(final String auctionner) {
-		return null;
+		// Remove all bids with owner equals to auctionner parameter
+		return bids;
 	}
 
 	@Override
 	public Set<Double> getAllBidsValues() {
+		// return a set containing all the values from the bids
 		return null;
 	}
 	
 	@Override
 	public Multiset<String> getAllAuctionnerAndCounter() {
-		return null;
-	}
-	
-	@Override
-	public Multimap<String, Bid> getAllBidsByAuctionners() {
+		Iterable<String> allAuctionners = Iterables.transform(bids, new Function<Bid, String>() {
+
+			@Override
+			public String apply(Bid arg0) {
+				return arg0.getOwner();
+			}
+		});
+		// return a multiset with auctionner and counting @see com.google.common.collect.HashMultiset#create
 		return null;
 	}
 	
 	@Override
 	public Set<Bid> getAllBids() {
+		// return an immutable copy 
 		return null;
+	}
+	
+	@Override
+	public Multimap<String, Bid> getAllBidsByAuctionners() {
+		Multimap<String, Bid> result = HashMultimap.create();
+		for (Bid bid : bids) {
+			result.put(bid.getOwner(), bid);
+		}
+		return result;
 	}
 
 }
