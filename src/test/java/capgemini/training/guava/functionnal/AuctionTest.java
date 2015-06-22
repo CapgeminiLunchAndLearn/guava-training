@@ -43,7 +43,7 @@ public class AuctionTest {
 	
 	@Test(expected=IllegalStateException.class)
 	public void testWinning_VickreyAuctionNoBids() {
-		auction.winner(StandardAuction.VALIDATION, StandardAuction.WINNING_FUNCTION);
+		auction.winner(VickreyAuction.VALIDATION, VickreyAuction.WINNING_FUNCTION);
 	}
 	
 	@Test(expected=IllegalStateException.class)
