@@ -45,7 +45,7 @@ public class TrainGuavaTest {
 	public void testOrderingNatural() {
 		List<String> expected = Lists.newArrayList(null, null, "ananas", "anunas", "goyabe", "goyave", "orange", "pamplemousse", "pomme");
 
-		assertEquals(expected, training.orderingNatural(ImmutableList.of("orange", null, "pomme", "pamplemousse", "goyave", null, "ananas", "goyabe", "anunas")));
+		assertEquals(expected, training.orderingNatural(Lists.newArrayList("orange", null, "pomme", "pamplemousse", "goyave", null, "ananas", "goyabe", "anunas")));
 	}
 	
 	@Test
