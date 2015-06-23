@@ -31,14 +31,13 @@ public class GuavaParser implements IParser {
 	@Override
 	public Bid unmarshalBid(String bid) {
 		Preconditions.checkArgument(!Strings.isNullOrEmpty(bid));
-		Iterable<String> values = Splitter.on(',').omitEmptyStrings().trimResults().split(bid);
+		List<String> values = Splitter.on(',').omitEmptyStrings().trimResults().splitToList(bid);
 		Preconditions.checkArgument(Iterables.size(values) == 3);
 		
-		Bid result = new Bid();
-		result.setOwner(Iterables.get(values, 0));
-		result.setValue(Double.valueOf(Iterables.get(values, 1)));
-		result.setTime(getCalendarFor(Iterables.get(values, 2)));
-		return result;
+		return new Bid()
+				.setOwner(values.get(0))
+				.setValue(Double.valueOf(values.get(1)))
+				.setTime(getCalendarFor(values.get(2)));
 	}
 
 	@Override

@@ -18,6 +18,7 @@ public class VickreyAuction {
 
 		@Override
 		public boolean apply(Iterable<Bid> input) {
+
 			return Iterables.size(Sets.newHashSet(Iterables.transform(input, new Function<Bid, String>() {
 
 				@Override
@@ -30,7 +31,7 @@ public class VickreyAuction {
 	};
 	
 	public static final Function<Iterable<Bid>, Entry<String, Double>> WINNING_FUNCTION = new Function<Iterable<Bid>, Map.Entry<String,Double>>() {
-		
+
 		@Override
 		public Entry<String, Double> apply(Iterable<Bid> input) {
 			final Entry<String, Double> standardWinner = StandardAuction.WINNING_FUNCTION.apply(input);

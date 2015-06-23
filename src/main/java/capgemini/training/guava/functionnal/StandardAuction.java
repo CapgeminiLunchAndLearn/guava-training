@@ -8,7 +8,6 @@ import capgemini.training.guava.basic.Bid;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
 
 public final class StandardAuction {
@@ -38,7 +37,7 @@ public final class StandardAuction {
 
 		@Override
 		public boolean apply(Iterable<Bid> input) {
-			return Lists.newArrayList(input).size() > 0;
+			return Iterables.size(input) > 0;
 		}
 	};
 	
